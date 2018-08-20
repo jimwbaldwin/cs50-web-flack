@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Flack Enter Name
+{% endblock %}
+
+{% block script %}
+  <script src="{{ url_for('static', filename='index.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    
+    <div class="container">
+      <!-- Login card -->
+      
+        <div class="card">
+          <div class="card-header">Enter</div>
+          <div class="card-body">
+            <div class="form-group row ">
+              <label for="form_display_name" class="col-sm-2 col-form-label">Username</label>
+              <div class="col-sm-10">
+                <input type="text" name="form_display_name" id="form_display_name" class="form-control" placeholder="Enter your display name">
+              </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                  <button id="set_name">Set name</button>
+                </div>
+            </div>
+          </div> <!--/card-body-->
+        </div> <!--/card-->
+      
+      <!-- /Login card -->
+
+    </div>
+{% endblock %}
