@@ -15,7 +15,9 @@
         <a href="#" class = "navbar-brand">Flack</a>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="" data-channel="general">General</a>
+            {% for chan in channelList %}
+              <a class="nav-link {% if chan == channel %}active{% endif %}" href="{{ url_for('chat', channel=chan) }}" data-channel="{{ chan }}">{{ chan }}</a>
+            {% endfor %}
           </li>
         </ul>
       </div>

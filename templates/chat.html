@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block script %}
+  <script>var channel = '{{ channel }}';</script>
   <script src="{{ url_for('static', filename='chat.js') }}"></script>
 {% endblock %}
 
