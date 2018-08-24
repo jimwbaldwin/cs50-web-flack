@@ -18,5 +18,4 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.replace("/chat/" + channel);
   }
 
-
 });

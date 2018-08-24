@@ -25,6 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
       return false;
     };
 
+    document.querySelector('#form-create-channel').onsubmit = () => {
+      socket.emit('create channel', {"channel": document.querySelector('#create-channel').value});
+      document.querySelector('#create-channel').value = '';
+      // Stop form from submitting
+      return false;
+    };
+
     socket.emit('get messages', {"channel": channel});
     return false;
   });
@@ -58,4 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     return false;
   });
+
+  socket.on('add channel', data => {
+    location.reload();
+  });
+
 });

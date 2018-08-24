@@ -10,7 +10,7 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
 maxChannelMessages = 100
-channels = {"general" : [], "test" : []}
+channels = {"general" : []}
 
 
 @app.route("/")
@@ -20,6 +20,8 @@ def index():
 @app.route("/chat/<channel>")
 def chat(channel):
     return render_template("chat.html", channel=channel, channelList=list(channels.keys()))
+
+
 
 @socketio.on("submit message")
 def submit_message(data):
@@ -40,3 +42,11 @@ def get_messages(data):
     channel = data["channel"]
     tempDictOutput = {"channel": channel, "messages": channels[channel]}
     emit("channel messages", json.dumps(tempDictOutput), broadcast=False)
+
+
+@socketio.on("create channel")
+def create_channel(data):
+    channel = data["channel"]
+    if channel not in channels:
+        channels[channel] = []
+        emit("add channel", broadcast=True)
