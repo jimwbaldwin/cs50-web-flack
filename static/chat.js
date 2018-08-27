@@ -83,10 +83,27 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
 
+  // Add the channel to the channel list.
   socket.on('add channel', data => {
-    // Added this to reload everyone's page when a new channel is created.
-    // That is not ideal as if someone is typing a message they lose it.
-    // Will probably replace the Jinja2 template with DOM javascript later.
-    location.reload();
+    // Turn the data string into useable JSON.
+    let jsonData = JSON.parse(data);
+    // Create the list item element and add the class.
+    let li = document.createElement('li')
+    li.setAttribute("class", "nav-item")
+    // Create the a element and add the attributes.
+    let a  = document.createElement('a')
+    a.setAttribute("href", "/chat/" + jsonData.channel)
+    a.setAttribute("data-channel", jsonData.channel)
+    a.setAttribute("class", "nav-link")
+    // Add the channel name to display.
+    a.innerHTML = jsonData.channel
+    // Put the a tag in the list.
+    li.appendChild(a);
+    
+    // Find the channel list element.
+    let channel_list = document.querySelector('#channel-list')
+    //Add the new li to the second last element in the list.
+    channel_list.insertBefore(li, channel_list.lastChild.previousElementSibling);
+
   });
 });

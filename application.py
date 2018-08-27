@@ -24,7 +24,9 @@ def index():
 def chat(channel):
     if channel not in channels:
         channels[channel] = []
-        #socketio.emit("add channel", json.dumps(channels), broadcast=True)
+        tempDictOutput = {"channel": channel}
+        # Add the new channel to everyone else's list.
+        socketio.emit("add channel", json.dumps(tempDictOutput), broadcast=True)
     return render_template("chat.html", channel=channel, channelList=list(channels.keys()))
 
 # When a message is submitted, save the message and broadcast the channels messages.
@@ -63,4 +65,4 @@ def create_channel(data):
         # Create the channel.
         channels[channel] = []
         # Send the message of a new channel to all users.
-        emit("add channel", broadcast=True)
+        emit("add channel", json.dumps(data), broadcast=True)
