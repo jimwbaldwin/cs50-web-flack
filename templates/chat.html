@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-  Channel
+  Flack: {{ channel }}
 {% endblock %}
 
 {% block script %}
@@ -10,32 +10,23 @@
 {% endblock %}
 
 {% block channelForm %}
-<li class="nav-item">
-  <form id="form-create-channel" >
-    <input type="text" class="form-control" id="create-channel" autocomplete="off">
-    <input type="submit" style="display:none;">
-  </form>
-</li>
+  <li class="nav-item">
+    <form id="form-create-channel" >
+      <input type="text" class="form-control" id="create-channel" autocomplete="off">
+      <input type="submit" style="display:none;">
+    </form>
+  </li>
 {% endblock %}
 
-{% block body %}
+{% block body %}   
+  <div id="chat-display"></div>
 
-<!--
-  <div class="container">
-    <div class="row">
--->
-      
-      <div id="chat-display"></div>
-
-      <form id="form-chat-input">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" id="chat-input" autocomplete="off" autofocus >
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Enter</button>
-          </div>
-        </div>
-      </form>
-  <!--
+  <form id="form-chat-input">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" id="chat-input" autocomplete="off" autofocus >
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Enter</button>
+      </div>
     </div>
-  </div> -->
+  </form>
 {% endblock %}
