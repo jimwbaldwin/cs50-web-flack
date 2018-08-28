@@ -32,7 +32,7 @@
                 </li>
                 {% for chan in channelList %}
                 <li class="nav-item">
-                    <a class="nav-link {% if chan == channel %}active{% endif %}" href="{{ url_for('chat', channel=chan) }}" data-channel="{{ chan }}">{{ chan }}</a>
+                    <a class="nav-link {% if chan == channel %}active{% endif %}" href="{{ url_for('chat', channel=chan) }}" id="channel-id-{{ chan }}">{{ chan }}</a>
                 </li>
                 {% endfor %}
                 {% block channelForm %}{% endblock %}

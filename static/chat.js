@@ -78,9 +78,20 @@ document.addEventListener('DOMContentLoaded', () => {
         li.appendChild(spanMessage);
         li.appendChild(spanTime);
         // Put the list items in the unordered list.
-        ul.appendChild(li)
+        ul.appendChild(li);
       };
+    } else {
+      myNode = document.querySelector('#channel-id-' + jsonData.channel)
+      if (!myNode.firstElementChild) {
+        var spanBadge = document.createElement('span');
+        spanBadge.setAttribute("class", "badge badge-secondary");
+        spanBadge.innerHTML = 0;
+        myNode.appendChild(spanBadge);
+      };
+      myNode.firstElementChild.innerHTML = Number(myNode.firstElementChild.innerHTML) + 1
+
     };
+
   });
 
   // Add the channel to the channel list.
@@ -88,20 +99,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Turn the data string into useable JSON.
     let jsonData = JSON.parse(data);
     // Create the list item element and add the class.
-    let li = document.createElement('li')
-    li.setAttribute("class", "nav-item")
+    let li = document.createElement('li');
+    li.setAttribute("class", "nav-item");
     // Create the a element and add the attributes.
-    let a  = document.createElement('a')
-    a.setAttribute("href", "/chat/" + jsonData.channel)
-    a.setAttribute("data-channel", jsonData.channel)
-    a.setAttribute("class", "nav-link")
+    let a  = document.createElement('a');
+    a.setAttribute("href", "/chat/" + jsonData.channel);
+    a.setAttribute("id", "channel-id-" + jsonData.channel);
+    a.setAttribute("class", "nav-link");
     // Add the channel name to display.
-    a.innerHTML = jsonData.channel
+    a.innerHTML = jsonData.channel;
     // Put the a tag in the list.
     li.appendChild(a);
     
     // Find the channel list element.
-    let channel_list = document.querySelector('#channel-list')
+    let channel_list = document.querySelector('#channel-list');
     //Add the new li to the second last element in the list.
     channel_list.insertBefore(li, channel_list.lastChild.previousElementSibling);
 
